@@ -6,19 +6,22 @@
 package examendos;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author PRUEVA
  */
+
+
 public class ProcesarEmpleado {
     boolean verificacion = false;
     int idVerificacion;
     int index;
     int cont=0;
     int idBorrar;
-    List <Empleado> miEmpleado = new ArrayList<>(); 
+    public List <Empleado> miEmpleado = new LinkedList<>(); 
     
     public void agregarEmpleado(){
         Empleado nuevo = new Empleado();
@@ -27,9 +30,12 @@ public class ProcesarEmpleado {
         idVerificacion = nuevo.mostrarId();
         verificador();
         if(verificacion == true){
+            verificacion=false;
             JOptionPane.showMessageDialog(null, "el identificador ya existe");
+            
         }else{
               miEmpleado.add(nuevo);
+              
         }
         
         
@@ -72,11 +78,133 @@ public class ProcesarEmpleado {
             
            if (Empleado.mostrarId()==idVerificacion){ 
                verificacion = true;
+           }else{
+               verificacion = false;
            }
            
        });
+                  
+    }
+    public void sueldoMax(){
+        Optional<Empleado> mostrarMax = miEmpleado.stream()
+             .max(Comparator.comparing(empleado->empleado.verSalario()));   
+        System.out.println(mostrarMax);
+    }
+    public void sueldoMin(){
+        Optional<Empleado> mostrarMin = miEmpleado.stream()
+             .min(Comparator.comparing(empleado->empleado.verSalario()));   
+        System.out.println(mostrarMin);
+    }
+    public void ordenarNombre(){
+        List<Empleado> ordenar =  miEmpleado.stream()
+                .sorted(Comparator.comparing(empleado->empleado.verNombre()))
+                .collect(Collectors.toList());
+                ordenar.forEach(System.out::println);
+               
+                
+     
+    }
+    public void sumaMoyorSete(){
+        Integer mSiete =  miEmpleado.stream()
+                .filter(empleado->empleado.verSalario()>700000)
+                .map(empleado->empleado.verSalario())
+                .reduce(0, (acu, salario)->acu + salario);
+                
+                
+                System.out.println(mSiete);
+                
+    }
+    public void comienzaConA(){
+        long a = miEmpleado.stream()
+                .filter(empleado->empleado.verapellido().indexOf('a')==0 || empleado.verapellido().indexOf('A')==0)
+                .count();
+        System.out.println(a);
+                
+    }
+    public void cincoSalarios(){
+        List<Empleado> ordenarCinco =  miEmpleado.stream()
+                .sorted(Comparator.comparing(empleado->empleado.verSalario(),Comparator.reverseOrder()))
+                .limit(5)
+                .collect(Collectors.toList());
+        ordenarCinco.forEach(System.out::println);
         
+                
     }
     
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

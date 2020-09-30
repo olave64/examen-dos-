@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author PRUEVA
  */
+
 public  class Empleado  extends Persona {
     
     
@@ -32,6 +33,10 @@ public  class Empleado  extends Persona {
         
         
     }
+    public int verSalario(){
+        return salario;
+    }
+    
 
 
     @Override
@@ -40,3 +45,9 @@ public  class Empleado  extends Persona {
     }
     
 }
+
+
+
+
+
+

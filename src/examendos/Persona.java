@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package examendos;
 
 import javax.swing.JOptionPane;
@@ -38,8 +39,17 @@ public class Persona {
     public int mostrarId(){
         return id; 
     }
-    
+    public String verNombre(){
+        return nombre;
+    }
+    public String verapellido(){
+        return apellido;
+    }
     public String mostrarDatos(){
         return "ID = " + id + " NOMBRE = " + nombre + " APELLIDO = " + apellido;
     }
 }
+
+
+
+
